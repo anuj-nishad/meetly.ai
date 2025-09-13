@@ -24,13 +24,12 @@ import { FaGithub } from "react-icons/fa"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 const formSchema = z.object({
-  name: z.string().min(1,{message: "Name is required"}),
+  name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email(),
   password: z.string().min(1, { message: "Password is required" }),
-  confirmPassword: z.string().min(1,{message: "Password is required"})
-}).refine((data)=> data.password === data.confirmPassword, {
+  confirmPassword: z.string().min(1, { message: "Password is required" })
+}).refine((data) => data.password === data.confirmPassword, {
   message: "Password doesn't match",
   path: ["confirmPassword"],
 })
@@ -59,15 +58,38 @@ const SignUpView = () => {
       name: data.name,
       email: data.email,
       password: data.password,
+      callbackURL: "/",
     },
       {
         onSuccess: () => {
-          router.push('/');
+          router.push("/")
+          setLoading(false)
         },
         onError: (error) => {
           setError(error.error.message);
         }
       }
+    );
+
+    setLoading(false);
+  }
+
+  const onSocial = async (provider: "github" | "google") => {
+    setError(null);
+    setLoading(true);
+
+    await authClient.signIn.social({
+      provider: provider,
+      callbackURL: "/",
+    },
+    {
+      onSuccess: ()=>{
+        setLoading(false)
+      },
+      onError: (error)=>{
+        setError(error.error.message);
+      }
+    }
     );
 
     setLoading(false);
@@ -174,6 +196,7 @@ const SignUpView = () => {
             <div className="grid grid-cols-2 gap-4">
               <Button
                 type="button"
+                onClick={() => onSocial("google")}
                 variant={"outline"}
                 className="w-full cursor-pointer hover:bg-gray-200"
               >
@@ -182,6 +205,7 @@ const SignUpView = () => {
               </Button>
               <Button
                 type="button"
+                onClick={() => onSocial("github")}
                 variant={"outline"}
                 className="w-full cursor-pointer hover:bg-gray-200"
               >

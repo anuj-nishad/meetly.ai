@@ -24,7 +24,6 @@ import { FaGithub } from "react-icons/fa"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1, { message: "Password is required" })
@@ -51,10 +50,33 @@ const SignInView = () => {
     await authClient.signIn.email({
       email: data.email,
       password: data.password,
+      callbackURL: "/",
     },
     {
       onSuccess: ()=>{
-        router.push('/');
+        router.push("/")
+        setLoading(false)
+      },
+      onError: (error)=>{
+        setError(error.error.message);
+      }
+    }
+    );
+
+    setLoading(false);
+  }
+
+  const onSocial = async (provider: "github" | "google") => {
+    setError(null);
+    setLoading(true);
+
+    await authClient.signIn.social({
+      provider: provider,
+      callbackURL: "/",
+    },
+    {
+      onSuccess: ()=>{
+        setLoading(false) 
       },
       onError: (error)=>{
         setError(error.error.message);
@@ -130,6 +152,7 @@ const SignInView = () => {
           <div className="grid grid-cols-2 gap-4">
             <Button
               type="button"
+              onClick={()=>onSocial("google")}
               variant={"outline"}
               className="w-full cursor-pointer hover:bg-gray-200"
             >
@@ -138,6 +161,7 @@ const SignInView = () => {
             </Button>
             <Button
               type="button"
+              onClick={()=>onSocial("github")}
               variant={"outline"}
               className="w-full cursor-pointer hover:bg-gray-200"
             >
