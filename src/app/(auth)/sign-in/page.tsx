@@ -1,5 +1,5 @@
+import SignInView from "@/modules/auth/ui/views/sign-in-view";
+
 export default function(){
-  return <div>
-   Sign in
-  </div>
+  return <SignInView/>
 }

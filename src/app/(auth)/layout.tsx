@@ -1,15 +1,12 @@
 import { Card } from "@/components/ui/card";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="grid h-screen grid-cols-1 md:grid-cols-2">
-    <div>
-      <Card>
+  return <div className="grid h-screen grid-cols-2 md:grid-cols-[40%_1fr]">
+    <div className="bg-radial from-[#fe0c43] to-[#590317] flex flex-col items-center justify-center ">
+      <img src="/logo.svg" alt="Image" className="h-[92px] my-3" />
+      <p className="font-bold text-4xl text-white">Meetly AI</p>
+    </div>
         {children}
-      </Card>
-    </div>
-    <div className="bg-radial from-red-500 to-red-900 flex items-center justify-center rounded-l-3xl">
-      <p className="font-bold text-4xl text-white">MeetlyAI</p>
-    </div>
   </div>
 }
 
