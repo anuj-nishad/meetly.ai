@@ -15,4 +15,4 @@ const PAGE = async() => {
   return <HOMEVIEW/>
 }
 
-export default PAGE
+export default PAGE;
