@@ -96,7 +96,7 @@ const SignUpView = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-12">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-[60%] md:w-[30%] mb-4">
           <div className="flex flex-col gap-6">
