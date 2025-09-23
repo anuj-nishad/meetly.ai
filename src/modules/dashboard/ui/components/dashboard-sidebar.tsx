@@ -59,7 +59,7 @@ export function DashboardSidebar() {
       </SidebarHeader>
 
       <div className="px-4 py-2">
-        <Separator className="opacity-10 text-[#FF6670]" />
+        <Separator className="opacity-20 text-[#FF6670]" />
       </div>
 
       <SidebarContent>
@@ -89,7 +89,7 @@ export function DashboardSidebar() {
         </SidebarGroup>
 
         <div className="px-4 py-2">
-          <Separator className="opacity-10 text-[#FF6670]" />
+          <Separator className="opacity-20 text-[#FF6670]" />
         </div>
 
         <SidebarGroup>
