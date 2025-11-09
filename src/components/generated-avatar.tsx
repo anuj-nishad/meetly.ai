@@ -34,4 +34,4 @@ const GeneratedAvtaar = ({
   )
 }
 
-export default GeneratedAvtaar
+export default GeneratedAvtaar;
