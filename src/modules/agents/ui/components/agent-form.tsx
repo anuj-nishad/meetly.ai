@@ -81,7 +81,7 @@ export const AgentForm = ({
       <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <GeneratedAvtaar
           seed={form.watch("name")}
-          variant="botttsneutral"
+          variant="botttsNeutral"
           className="border size-16"
         />
         <FormField
