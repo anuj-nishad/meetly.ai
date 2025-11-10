@@ -125,7 +125,6 @@ export const agentsRouter = createTRPCRouter({
         total: total.count,
         totalPages,
       }
-      return data;
     }),
 
   create: protectedProcedure
