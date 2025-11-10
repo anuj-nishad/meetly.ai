@@ -9,7 +9,7 @@ export const MeetingsView = () =>{
 
   return (
     <div>
-      {JSON.stringify(data)}
+      Normal data
     </div>
   )
 }
